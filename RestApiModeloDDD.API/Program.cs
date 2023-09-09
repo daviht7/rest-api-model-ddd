@@ -1,3 +1,6 @@
+using Autofac;
+using RestApiModeloDDD.Infrastructure.CrossCutting.IOC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+void ConfigureContainer(ContainerBuilder builder)
+{
+    builder.RegisterModule(new ModuleIOC());
+}
 
 var app = builder.Build();
 

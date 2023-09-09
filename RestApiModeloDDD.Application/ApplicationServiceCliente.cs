@@ -20,26 +20,32 @@ namespace RestApiModeloDDD.Application
         {
             var cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
 
+            _serviceCliente.Add(cliente);
         }
 
         public IEnumerable<ClienteDto> GetAll()
         {
-            throw new NotImplementedException();
+            var clientesDto = _serviceCliente.GetAll();
+
+            return _mapperCliente.MapperListClientesDto(clientesDto);
         }
 
         public ClienteDto GetById(int id)
         {
-            throw new NotImplementedException();
+            var cliente = _serviceCliente.GetById(id);
+            return _mapperCliente.MapperEntityToDto(cliente);
         }
 
         public void Remove(ClienteDto clienteDto)
         {
-            throw new NotImplementedException();
+            var cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            _serviceCliente.Remove(cliente);
         }
 
         public void Update(ClienteDto clienteDto)
         {
-            throw new NotImplementedException();
+            var cliente = _mapperCliente.MapperDtoToEntity(clienteDto);
+            _serviceCliente.Update(cliente);
         }
     }
 }
